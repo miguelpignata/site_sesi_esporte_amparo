@@ -162,7 +162,7 @@ const dadosModalidades = {
     }
 };
 
-const totalFotosPasta = 32;
+const totalFotosPasta = 33;
 const fotosGaleriaVsco = Array.from({ length: totalFotosPasta }, (_, i) => {
     const numero = String(totalFotosPasta - i).padStart(2, '0');
     return {

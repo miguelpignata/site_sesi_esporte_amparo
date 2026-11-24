@@ -5,13 +5,15 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+html {
+    overflow-x: hidden;
+}
+
 body, html {
     width: 100%;
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
     background-color: #fff;
 }
 
@@ -24,6 +26,8 @@ body, html {
 }
 
 .site-header {
+    position: relative;
+    top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -97,103 +101,17 @@ body, html {
     flex-grow: 1;
     position: relative;
     width: 100%;
-    margin-bottom: 100vh;
 }
 
 .secao {
     width: 100%;
+    min-height: calc(100vh - 72px);
     display: none;
     flex-direction: column;
 }
 
 .secao.ativa {
     display: flex;
-}
-
-.inicio-hero-banner {
-    min-height: calc(100vh - 72px);
-    width: 100%;
-    padding: 35px;
-    display: flex;
-    align-items: center;
-    background-image: 
-        linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
-        url('Imagens/quadra_sesi.jpeg');
-    background-size: cover;
-    background-position: center;
-}
-
-.transicao-apos-banner {
-    width: 100%;
-    height: 50px;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.14) 0%, rgba(255, 255, 255, 0) 100%);
-}
-
-.sessao-fotos-container {
-    width: 100%;
-    padding: 18px 40px 40px 40px;
-    background: #fff;
-}
-
-.sessao-fotos-titulo {
-    display: inline-block;
-    font-style: italic;
-    font-size: 18px;
-    font-weight: 700;
-    color: #111;
-    background: #fff;
-    border: 1.5px solid #222;
-    border-radius: 10px;
-    padding: 8px 20px;
-    margin-bottom: 20px;
-}
-
-.galeria-fotos-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-    width: 100%;
-}
-
-.foto-atleta-box {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #f1f5f9;
-    border: 1px solid #e2e8f0;
-}
-
-.foto-atleta-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.ver-mais-wrapper {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 18px;
-}
-
-.btn-ver-mais-fotos {
-    background: #111;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 10px 22px;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    transition: background 0.2s;
-}
-
-.btn-ver-mais-fotos:hover {
-    background: #e30613;
 }
 
 .secao.white-bg {
@@ -213,7 +131,184 @@ body, html {
     display: flex;
 }
 
-/* NOTÍCIAS */
+.inicio-hero-banner {
+    min-height: calc(110vh - 72px);
+    width: 100%;
+    padding: 35px;
+    display: flex;
+    align-items: center;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+        url('Imagens/quadra_sesi.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+.transicao-apos-banner {
+    width: 100%;
+    height: 70px;
+    background: linear-gradient(to bottom, rgba(17, 17, 17, 0.22) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.hero-card {
+    background: #fff;
+    padding: 35px;
+    border-radius: 50px;
+    width: 440px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.hero-card h1 {
+    font-size: 38px;
+    line-height: 1.1;
+    font-weight: 900;
+    color: #111;
+}
+
+.hero-card p {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.5;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.stat-box {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 12px 8px;
+    text-align: center;
+    background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stat-box.action {
+    background: #111;
+    color: #fff;
+    cursor: pointer;
+}
+
+.stat-box.action:hover {
+    background: #e30613;
+}
+
+.stat-box strong {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.stat-box span {
+    font-size: 11px;
+    color: #666;
+}
+
+.stat-box.action span {
+    color: #ddd;
+}
+
+.sessao-fotos-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 25px 40px 40px 40px;
+    background: #fff;
+}
+
+.sessao-fotos-header h2 {
+    font-size: 26px;
+    color: #111;
+    margin-bottom: 20px;
+}
+
+.galeria-vsco {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    padding: 14px;
+    background: #f6f6f6;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    max-height: 100vh;
+    overflow: hidden;
+    transition: max-height 0.45s ease;
+}
+
+.galeria-coluna {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.foto-vsco {
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #e5e5e5;
+    animation: fotoVscoEntra 0.45s ease both;
+}
+
+.foto-vsco img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.35s ease;
+}
+
+.foto-vsco:hover img {
+    transform: scale(1.04);
+}
+
+@keyframes fotoVscoEntra {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .foto-vsco { animation: none; }
+    .foto-vsco img { transition: none; }
+    .galeria-vsco { transition: none; }
+}
+
+/* Botão "Exibir mais fotos" no padrão visual do site */
+.ver-mais-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 18px;
+}
+
+.btn-ver-mais-fotos {
+    background: #e30613;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 22px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-ver-mais-fotos:hover {
+    background: #b5040f;
+    transform: translateY(-1px);
+}
+
 .noticias-centralizadas {
     max-width: 1100px;
     margin: 0 auto;
@@ -636,7 +731,7 @@ body, html {
 
 .atleta-img-wrapper {
     width: 100%;
-    height: 240px; 
+    height: 240px;
     background: #f1f5f9;
 }
 
@@ -1053,7 +1148,7 @@ body, html {
 .hero-card {
     background: #fff;
     padding: 35px;
-    border-radius: 20px;
+    border-radius: 50px;
     width: 440px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     display: flex;
@@ -1116,9 +1211,10 @@ body, html {
     color: #ddd;
 }
 
-/* RODAPÉ */
+/* Rodapé posicionado naturalmente logo após o conteúdo de cada seção ativa */
 .site-footer {
     width: 100%;
+    position: relative;
 }
 
 .footer-main {

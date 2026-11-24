@@ -10,10 +10,10 @@
 
 <body>
     <div class="site-container">
-        
+
         <header class="site-header">
 
-            <a href="#inicio" class="logo-container" onclick="mudarSecao('inicio')">
+            <a href="#inicio" class="logo-container" onclick="mudarSecao('inicio'); return false;">
                 <div class="logo-icon-img">
                     <img src="./Imagens/sesiesporteamparo.png" alt="Logo SESI Esporte Amparo">
                 </div>
@@ -22,12 +22,12 @@
 
             <nav class="site-nav">
                 <ul>
-                    <li><a href="#inicio" class="nav-btn active" onclick="mudarSecao('inicio')">Início</a></li>
-                    <li><a href="#noticias" class="nav-btn" onclick="mudarSecao('noticias')">Notícias</a></li>
-                    <li><a href="#modalidades" class="nav-btn" onclick="mudarSecao('modalidades')">Modalidades</a></li>
-                    <li><a href="#calendario" class="nav-btn" onclick="mudarSecao('calendario')">Calendário</a></li>
-                    <li><a href="#uniformes" class="nav-btn" onclick="mudarSecao('uniformes')">Uniformes</a></li>
-                    <li><a href="#treinos" class="nav-btn" onclick="mudarSecao('treinos')">Treinos</a></li>
+                    <li><a href="#inicio" class="nav-btn active" onclick="mudarSecao('inicio'); return false;">Início</a></li>
+                    <li><a href="#noticias" class="nav-btn" onclick="mudarSecao('noticias'); return false;">Notícias</a></li>
+                    <li><a href="#modalidades" class="nav-btn" onclick="mudarSecao('modalidades'); return false;">Modalidades</a></li>
+                    <li><a href="#calendario" class="nav-btn" onclick="mudarSecao('calendario'); return false;">Calendário</a></li>
+                    <li><a href="#uniformes" class="nav-btn" onclick="mudarSecao('uniformes'); return false;">Uniformes</a></li>
+                    <li><a href="#treinos" class="nav-btn" onclick="mudarSecao('treinos'); return false;">Treinos</a></li>
                 </ul>
             </nav>
         </header>
@@ -59,17 +59,21 @@
                 <div class="transicao-apos-banner"></div>
 
                 <div id="sessao-fotos-atletas" class="sessao-fotos-container">
-                    <h2 class="sessao-fotos-titulo">Sessão de Fotos</h2>
-                    <div id="galeria-fotos-atletas" class="galeria-fotos-grid"></div>
+                    <div class="sessao-fotos-header">
+                        <span class="sub-title-red">Galeria</span>
+                        <h2>SESSÃO DE FOTOS</h2>
+                    </div>
+                    <div id="galeria-fotos-atletas" class="galeria-vsco"></div>
                     <div class="ver-mais-wrapper">
                         <button id="btn-ver-mais-fotos" type="button" class="btn-ver-mais-fotos" onclick="verMaisFotosAtletas()">
-                            Ver Mais <span>▼</span>
+                            Exibir mais fotos
                         </button>
                     </div>
                 </div>
             </section>
 
             <section id="noticias" class="secao white-bg">
+
                 <div id="sub-noticias-lista" class="sub-secao ativa-sub noticias-centralizadas">
                     <div class="noticias-header-top">
                         <span class="sub-title-red">Novidades</span>
@@ -232,6 +236,7 @@
             </section>
 
             <section id="modalidades" class="secao white-bg">
+
                 <div id="sub-modalidades-lista" class="sub-secao ativa-sub modalidades-centralizadas">
                     <div class="modalidades-header-top">
                         <span class="sub-title-red">Nossas Equipes</span>

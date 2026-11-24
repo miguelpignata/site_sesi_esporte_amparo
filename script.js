@@ -162,22 +162,23 @@ const dadosModalidades = {
     }
 };
 
-// Adicione aqui fotos extras caso queira ampliar além dos atletas listados acima
-const fotosExtrasAtletas = [
-    {nome: "Atleta Extra", img: "Imagens/Atletas/pignata.jpeg" }
-];
+const totalFotosPasta = 32;
+const fotosGaleriaVsco = Array.from({ length: totalFotosPasta }, (_, i) => {
+    const numero = String(totalFotosPasta - i).padStart(2, '0');
+    return {
+        nome: `Foto ${numero}`,
+        img: `./Imagens/Fotos/foto${numero}.jpg`
+    };
+});
 
-const todasFotosAtletas = [
-    ...Object.values(dadosModalidades).flatMap(mod =>
-        mod.atletas.map(atleta => ({
-            nome: atleta.nome,
-            img: atleta.img
-        }))
-    ),
-    ...fotosExtrasAtletas
-];
+let paginasAlturaVsco = 1;
 
-let quantidadeFotosVisiveis = 4;
+function atualizarBotaoExibirMaisFotos(grid, btnVerMais) {
+    if (!btnVerMais || !grid) return;
+
+    const haFotosEscondidas = grid.scrollHeight > grid.clientHeight + 2;
+    btnVerMais.style.display = haFotosEscondidas ? 'inline-flex' : 'none';
+}
 
 function renderizarGaleriaAtletas() {
     const grid = document.getElementById('galeria-fotos-atletas');
@@ -185,41 +186,62 @@ function renderizarGaleriaAtletas() {
     if (!grid) return;
 
     grid.innerHTML = '';
+    grid.style.maxHeight = `${paginasAlturaVsco * 100}vh`;
 
-    const fotosExibidas = todasFotosAtletas.slice(0, quantidadeFotosVisiveis);
+    const numColunas = 4;
+    const colunas = Array.from({ length: numColunas }, () => {
+        const col = document.createElement('div');
+        col.className = 'galeria-coluna';
+        return col;
+    });
 
-    fotosExibidas.forEach(foto => {
+    fotosGaleriaVsco.forEach((foto, index) => {
         const card = document.createElement('div');
-        card.className = 'foto-atleta-box';
+        card.className = 'foto-vsco';
 
         const img = document.createElement('img');
         img.src = foto.img;
-        img.alt = foto.nome || 'Foto de atleta';
+        img.alt = foto.nome;
+        img.onload = () => atualizarBotaoExibirMaisFotos(grid, btnVerMais);
         img.onerror = function() {
             this.onerror = null;
             this.src = './Imagens/quadra_sesi.jpeg';
+            atualizarBotaoExibirMaisFotos(grid, btnVerMais);
         };
 
         card.appendChild(img);
-        grid.appendChild(card);
+        colunas[index % numColunas].appendChild(card);
     });
 
-    if (btnVerMais) {
-        btnVerMais.style.display = quantidadeFotosVisiveis < todasFotosAtletas.length
-            ? 'inline-flex'
-            : 'none';
-    }
+    colunas.forEach(col => grid.appendChild(col));
+    atualizarBotaoExibirMaisFotos(grid, btnVerMais);
 }
 
 function verMaisFotosAtletas() {
-    quantidadeFotosVisiveis += 8;
-    renderizarGaleriaAtletas();
+    const grid = document.getElementById('galeria-fotos-atletas');
+    const btnVerMais = document.getElementById('btn-ver-mais-fotos');
+    if (!grid) return;
+
+    paginasAlturaVsco += 1;
+    grid.style.maxHeight = `${paginasAlturaVsco * 100}vh`;
+    atualizarBotaoExibirMaisFotos(grid, btnVerMais);
 }
 
 function resetarGaleriaAtletas() {
-    quantidadeFotosVisiveis = 4;
-    renderizarGaleriaAtletas();
+    paginasAlturaVsco = 1;
+    const grid = document.getElementById('galeria-fotos-atletas');
+    const btnVerMais = document.getElementById('btn-ver-mais-fotos');
+    if (grid) {
+        grid.style.maxHeight = '100vh';
+        atualizarBotaoExibirMaisFotos(grid, btnVerMais);
+    }
 }
+
+window.addEventListener('resize', function() {
+    const grid = document.getElementById('galeria-fotos-atletas');
+    const btnVerMais = document.getElementById('btn-ver-mais-fotos');
+    atualizarBotaoExibirMaisFotos(grid, btnVerMais);
+});
 
 function trocarModalidade(chave) {
     const botoesMod = document.querySelectorAll('.mod-btn');
